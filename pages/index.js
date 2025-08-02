@@ -1,78 +1,28 @@
-import Head from 'next/head';
-import { useState } from 'react';
+import Head from "next/head";
+import AgeCalculator from "../components/AgeCalculator";
+import DateDiffCalculator from "../components/DateDiffCalculator";
 
 export default function Home() {
-  const [birthdate, setBirthdate] = useState('');
-  const [age, setAge] = useState(null);
+    return (
+        <>
+            <Head>
+                <title>Multi Tool Utilities</title>
+                <meta name="description" content="A collection of everyday utilities like age calculator and date difference calculator." />
+            </Head>
 
-    const calculateAge = () => {
-        if (!birthdate) return;
+            <main className="min-h-screen p-8 bg-gray-100">
+                <h1 className="text-3xl font-bold mb-6 text-center">Multi Tool Utilities</h1>
 
-        const now = new Date();
-        const birth = new Date(birthdate);
+                {/* Tool 1: Age Calculator */}
+                <section className="mb-12">
+                    <AgeCalculator />
+                </section>
 
-        let years = now.getFullYear() - birth.getFullYear();
-        let months = now.getMonth() - birth.getMonth();
-        let days = now.getDate() - birth.getDate();
-
-        if (days < 0) {
-            months--;
-            const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-            days += prevMonth.getDate();
-        }
-
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-
-        // Time differences in milliseconds
-        const diff = now.getTime() - birth.getTime();
-        const seconds = Math.floor(diff / 1000);
-        const minutes = Math.floor(diff / (1000 * 60));
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-
-        setAge({
-            years,
-            months,
-            days,
-            hours,
-            minutes,
-            seconds,
-        });
-    };
-
-
-
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50">
-      <Head><title>Age Calculator</title></Head>
-      <h1 className="text-3xl font-bold mb-4">Age Calculator</h1>
-      <input
-        type="date"
-        value={birthdate}
-        onChange={(e) => setBirthdate(e.target.value)}
-        className="p-2 border rounded mb-4"
-      />
-          <button
-              onClick={calculateAge}
-              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-              Calculate Age
-          </button>
-
-          {age && (
-              <div className="mt-4 space-y-2 text-lg">
-                  <div>
-                      You are: <strong>{age.years}</strong> years, <strong>{age.months}</strong> months, <strong>{age.days}</strong> days
-                  </div>
-                  <div>
-                      That’s: <strong>{age.hours.toLocaleString()}</strong> hours,
-                      <strong> {age.minutes.toLocaleString()}</strong> minutes,
-                      <strong> {age.seconds.toLocaleString()}</strong> seconds
-                  </div>
-              </div>
-          )}
-    </div>
-  );
+                {/* Tool 2: Date Difference Calculator */}
+                <section className="mb-12">
+                    <DateDiffCalculator />
+                </section>
+            </main>
+        </>
+    );
 }
