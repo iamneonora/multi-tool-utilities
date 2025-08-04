@@ -1,6 +1,7 @@
 import Head from "next/head";
 import AgeCalculator from "../components/AgeCalculator";
 import DateDiffCalculator from "../components/DateDiffCalculator";
+import UnitConverter from "../components/UnitConverter";
 
 export default function Home() {
     return (
@@ -21,6 +22,11 @@ export default function Home() {
                 {/* Tool 2: Date Difference Calculator */}
                 <section className="mb-12">
                     <DateDiffCalculator />
+                </section>
+
+                {/* Tool 2: Unit Converter */}
+                <section className="mb-12">
+                    <UnitConverter />
                 </section>
             </main>
         </>
