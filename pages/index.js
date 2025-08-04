@@ -2,6 +2,7 @@ import Head from "next/head";
 import AgeCalculator from "../components/AgeCalculator";
 import DateDiffCalculator from "../components/DateDiffCalculator";
 import UnitConverter from "../components/UnitConverter";
+import CurrencyConverter from "../components/CurrencyConverter";
 
 export default function Home() {
     return (
@@ -28,6 +29,13 @@ export default function Home() {
                 <section className="mb-12">
                     <UnitConverter />
                 </section>
+
+                {/* Tool 4: Currency Converter */}
+                <section className="mb-12">
+                    <CurrencyConverter />
+                </section>
+
+
             </main>
         </>
     );
